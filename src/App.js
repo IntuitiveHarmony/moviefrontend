@@ -44,7 +44,7 @@ const App = () => {
   const handleNewMovieFormSubmit = () => {
     axios
       .post(
-        'http://localhost:3000/movies',
+        MONGODB_URI + '/movies',
         {
           title: newTitle,
           genre: newGenre,
@@ -54,7 +54,7 @@ const App = () => {
         }
       ).then(() => {
       axios
-        .get('http://localhost:3000/movies')
+        .get(MONGODB_URI + '/movies')
         .then((response) => {
           setMovies(response.data)
         })
