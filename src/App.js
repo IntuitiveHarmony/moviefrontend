@@ -1,7 +1,7 @@
 import './App.css';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
-// const MONGODB_URI  = process.env.MONGODB_URI
+const MONGODB_URI  = process.env.MONGODB_URI
 
 
 
@@ -15,7 +15,7 @@ const App = () => {
 
   useEffect(()=>{
       axios
-          .get('http://localhost:3000/movies')
+          .get('https://sleepy-gorge-06614.herokuapp.com/movies')
           .then((response)=>{
               setMovies(response.data)
           })
@@ -46,7 +46,7 @@ const App = () => {
 
     axios
       .post(
-        'http://localhost:3000/movies',
+        'https://sleepy-gorge-06614.herokuapp.com/movies',
         {
           title: newTitle,
           genre: newGenre,
@@ -56,7 +56,7 @@ const App = () => {
         }
       ).then(() => {
       axios
-        .get('http://localhost:3000/movies')
+        .get('https://sleepy-gorge-06614.herokuapp.com/movies')
         .then((response) => {
           console.log(response.data)
           setMovies(response.data)
