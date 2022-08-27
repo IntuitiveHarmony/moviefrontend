@@ -1,6 +1,8 @@
 import './App.css';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
+const MONGODB_URI  = process.env.MONGODB_URI
+
 
 
 const App = () => {
@@ -13,7 +15,7 @@ const App = () => {
 
   useEffect(()=>{
       axios
-          .get('http://localhost:3000/movies')
+          .get(MONGODB_URI + '/movies')
           .then((response)=>{
               setMovies(response.data)
           })
