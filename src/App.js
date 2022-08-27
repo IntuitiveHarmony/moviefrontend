@@ -15,7 +15,7 @@ const App = () => {
 
   useEffect(()=>{
       axios
-          .get('https://fast-bayou-47205.herokuapp.com//movies')
+          .get('http://localhost:3000/movies')
           .then((response)=>{
               setMovies(response.data)
           })
@@ -46,7 +46,7 @@ const App = () => {
 
     axios
       .post(
-        'https://fast-bayou-47205.herokuapp.com/movies',
+        'http://localhost:3000/movies',
         {
           title: newTitle,
           genre: newGenre,
@@ -56,7 +56,7 @@ const App = () => {
         }
       ).then(() => {
       axios
-        .get('https://fast-bayou-47205.herokuapp.com/movies')
+        .get('http://localhost:3000/movies')
         .then((response) => {
           console.log(response.data)
           setMovies(response.data)
