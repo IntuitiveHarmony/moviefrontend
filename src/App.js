@@ -42,7 +42,7 @@ const App = () => {
   const handleNewMovieFormSubmit = () => {
     axios
       .post(
-        'https://sleepy-gorge-06614.herokuapp.com/movies',
+        'http://localhost:3000/movies',
         {
           title: newTitle,
           genre: newGenre,
