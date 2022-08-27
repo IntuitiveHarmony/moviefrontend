@@ -1,9 +1,7 @@
 import './App.css';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
-require('dotenv').config()
-const MONGODB_URI  = process.env.MONGODB_URI
-
+//const MONGODB_URI  = process.env.MONGODB_URI
 
 
 
@@ -17,7 +15,7 @@ const App = () => {
 
   useEffect(()=>{
       axios
-          .get(MONGODB_URI + '/movies')
+          .get('https://git.heroku.com/sleepy-gorge-06614.git/movies')
           .then((response)=>{
               setMovies(response.data)
           })
@@ -45,11 +43,10 @@ const App = () => {
 
   const handleNewMovieFormSubmit = () => {
     console.log(newTitle)
-    console.log(MONGODB_URI)
 
     axios
       .post(
-        MONGODB_URI + '/movies',
+        'https://git.heroku.com/sleepy-gorge-06614.git/movies',
         {
           title: newTitle,
           genre: newGenre,
@@ -59,7 +56,7 @@ const App = () => {
         }
       ).then(() => {
       axios
-        .get(MONGODB_URI + '/movies')
+        .get('https://git.heroku.com/sleepy-gorge-06614.git/movies')
         .then((response) => {
           console.log(response.data)
           setMovies(response.data)
