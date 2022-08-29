@@ -6,6 +6,7 @@ const apiKey = '5e986ac1b545d3a43184019b017d36f3'
 const APIComponent = (props) => {
   let [imageString, setImageString] = useState('https://image.tmdb.org/t/p/w92')
   const [popularMovies, setPopularMovies] = useState([])
+  const [newRating, setNewRating] = useState(0)
 
   useEffect(()=>{
       axios
@@ -24,9 +25,8 @@ const APIComponent = (props) => {
         'https://fast-bayou-47205.herokuapp.com/movies',
         {
           title: movieData.title ? movieData.title : movieData.name,
-          genre: 'newGenre',
           image: imageString + movieData.poster_path,
-          rating: movieData.vote_average,
+          rating: Math.round(movieData.vote_average*10)/10,
           watched: false
         }
       ).then(() => {

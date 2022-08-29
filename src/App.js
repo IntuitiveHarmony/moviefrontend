@@ -9,7 +9,7 @@ const App = () => {
   const [newGenre, setNewGenre] = useState('')
   const [newImage, setNewImage] = useState('')
   const [newRating, setNewRating] = useState(0)
-  const [newWatched, setNewWatched] = useState(false)
+  const [newWatched, setNewWatched] = useState()
 
 
   useEffect(()=>{
@@ -95,8 +95,22 @@ const App = () => {
       })
   }
 
-  console.log(movies);
-
+  const handleChangeWatched = (movieData) => {
+    axios
+      .put(
+        `https://fast-bayou-47205.herokuapp.com/movies/${movieData._id}`,
+        {
+          watched: !movieData.watched
+        }
+      )
+      .then(() => {
+        axios
+        .get('https://fast-bayou-47205.herokuapp.com/movies')
+        .then((response) => {
+          setMovies(response.data)
+        })
+      })
+  }
 
 
   return (
@@ -129,25 +143,19 @@ const App = () => {
             <td>{index + 1}</td>
             <td>{movie.title}</td>
             <td><img src={movie.image} /></td>
-            <td>{movie.vote_average}</td>
-            <td>{movie.watched}</td>
-            <details>
-            <summary>Edit</summary>
-              <form onSubmit={(event) => {
-                handleMovieUpdate(movie)
-              }}>
-                Title: <input type="text" defaultValue={movie.title} onChange={handleNewTitleChange} /><br/>
-                Genre: <input type="text" defaultValue={movie.genre} onChange={handleNewGenreChange} /><br/>
-                Image: <input type="text" defaultValue={movie.image} onChange={handleNewImageChange} /><br/>
-                Rating: <input type="number" defaultValue={movie.rating} onChange={handleNewRatingChange} /><br/>
-                Watched:
-                {movie.watched ?
-                   <input type="checkbox" defaultValue={movie.watched} checked onChange={handleNewWatchedChange} /> :
-                   <input type="checkbox" defaultValue={movie.watched} onChange={handleNewWatchedChange} />
-                 } <br/>
-                <input type="submit" value="Confirm Changes"/>
-              </form>
-            </details>
+            <td>{movie.rating}</td>
+            <td>
+                {
+                  movie.watched ?
+                  <input type='checkbox' checked onChange={(event) => {
+                    handleChangeWatched(movie)
+                  }}/> :
+                  <input type='checkbox' onChange={(event) => {
+                    handleChangeWatched(movie)
+                  }}/>
+                }
+            </td>
+
             <button onClick={(event) => {
               handleDelete(movie)
             }}>Remove</button>
@@ -161,3 +169,23 @@ const App = () => {
 }
 
 export default App;
+
+
+//code graveyyard
+// <details>
+// <summary>Edit</summary>
+//   <form onSubmit={(event) => {
+//     handleMovieUpdate(movie)
+//   }}>
+//     Title: <input type="text" defaultValue={movie.title} onChange={handleNewTitleChange} /><br/>
+//     Genre: <input type="text" defaultValue={movie.genre} onChange={handleNewGenreChange} /><br/>
+//     Image: <input type="text" defaultValue={movie.image} onChange={handleNewImageChange} /><br/>
+//     Rating: <input type="number" defaultValue={movie.rating} onChange={handleNewRatingChange} /><br/>
+//     Watched:
+//     {movie.watched ?
+//        <input type="checkbox" defaultValue={movie.watched} checked onChange={handleNewWatchedChange} /> :
+//        <input type="checkbox" defaultValue={movie.watched} onChange={handleNewWatchedChange} />
+//      } <br/>
+//     <input type="submit" value="Confirm Changes"/>
+//   </form>
+// </details>
