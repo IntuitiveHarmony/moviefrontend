@@ -1,9 +1,9 @@
 import './App.css';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
-// const MONGODB_URI  = process.env.MONGODB_URI
+import APIComponent from './components/APIComponent'
 
-
+const apiKey = '5e986ac1b545d3a43184019b017d36f3'
 
 const App = () => {
   const [movies, setMovies] = useState([])
@@ -12,10 +12,12 @@ const App = () => {
   const [newImage, setNewImage] = useState('')
   const [newRating, setNewRating] = useState(0)
   const [newWatched, setNewWatched] = useState(false)
+  const [popularMovies, setPopularMovies] = useState([])
+
 
   useEffect(()=>{
       axios
-          .get('http://localhost:3000/movies')
+          .get('https://fast-bayou-47205.herokuapp.com/movies')
           .then((response)=>{
               setMovies(response.data)
           })
@@ -42,11 +44,9 @@ const App = () => {
   }
 
   const handleNewMovieFormSubmit = () => {
-
-
     axios
       .post(
-        'http://localhost:3000/movies',
+        'https://fast-bayou-47205.herokuapp.com/movies',
         {
           title: newTitle,
           genre: newGenre,
@@ -56,7 +56,7 @@ const App = () => {
         }
       ).then(() => {
       axios
-        .get('http://localhost:3000/movies')
+        .get('https://fast-bayou-47205.herokuapp.com/movies')
         .then((response) => {
           console.log(response.data)
           setMovies(response.data)
@@ -67,7 +67,7 @@ const App = () => {
   const handleMovieUpdate = (movieData) => {
     axios
       .put(
-        `http://localhost:3000/movies/${movieData._id}`,
+        `https://fast-bayou-47205.herokuapp.com/movies/${movieData._id}`,
         {
           title: newTitle,
           genre: newGenre,
@@ -78,7 +78,7 @@ const App = () => {
       )
       .then(() => {
         axios
-        .get('http://localhost:3000/movies')
+        .get('https://fast-bayou-47205.herokuapp.com/movies')
         .then((response) => {
           setMovies(response.data)
         })
@@ -87,15 +87,27 @@ const App = () => {
 
   const handleDelete = (movieData) => {
     axios
-      .delete(`http://localhost:3000/movies/${movieData._id}`)
+      .delete(`https://fast-bayou-47205.herokuapp.com/movies/${movieData._id}`)
       .then(() => {
         axios
-        .get('http://localhost:3000/movies')
+        .get('https://fast-bayou-47205.herokuapp.com/movies')
         .then((response) => {
           setMovies(response.data)
         })
       })
   }
+
+  const getMovies = () => {
+    axios.get('https://api.themoviedb.org/3/trending/all/day?api_key=' + apiKey)
+  }
+
+  useEffect(()=>{
+      axios
+          .get('https://api.themoviedb.org/3/trending/all/day?api_key=' + apiKey)
+          .then((response)=>{
+              setPopularMovies(response.data.results)
+          })
+  },[])
 
   return (
     <div>
@@ -139,6 +151,7 @@ const App = () => {
           </div>
         )
       })}
+      <APIComponent popularMovies={popularMovies}/>
     </div>
   )
 }
