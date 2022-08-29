@@ -3,8 +3,6 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 import APIComponent from './components/APIComponent'
 
-const apiKey = '5e986ac1b545d3a43184019b017d36f3'
-
 const App = () => {
   const [movies, setMovies] = useState([])
   const [newTitle, setNewTitle] = useState('')
@@ -12,7 +10,6 @@ const App = () => {
   const [newImage, setNewImage] = useState('')
   const [newRating, setNewRating] = useState(0)
   const [newWatched, setNewWatched] = useState(false)
-  const [popularMovies, setPopularMovies] = useState([])
 
 
   useEffect(()=>{
@@ -21,6 +18,7 @@ const App = () => {
           .then((response)=>{
               setMovies(response.data)
           })
+
   },[])
 
   const handleNewTitleChange = (e) => {
@@ -97,17 +95,9 @@ const App = () => {
       })
   }
 
-  const getMovies = () => {
-    axios.get('https://api.themoviedb.org/3/trending/all/day?api_key=' + apiKey)
-  }
+  console.log(movies);
 
-  useEffect(()=>{
-      axios
-          .get('https://api.themoviedb.org/3/trending/all/day?api_key=' + apiKey)
-          .then((response)=>{
-              setPopularMovies(response.data.results)
-          })
-  },[])
+
 
   return (
     <div>
@@ -124,7 +114,7 @@ const App = () => {
       </details>
       {movies.map((movie) => {
         return (
-          <div className='flex-container'>
+          <div key={movie._id} className='flex-container' >
             <h2>{movie.title}</h2>
             <p>{movie.genre}</p>
             <img src={movie.image} />
@@ -151,7 +141,7 @@ const App = () => {
           </div>
         )
       })}
-      <APIComponent popularMovies={popularMovies}/>
+      <APIComponent setMovies={setMovies}/>
     </div>
   )
 }
