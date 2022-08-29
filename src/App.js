@@ -151,7 +151,7 @@ const App = () => {
           </div>
         )
       })}
-      <APIComponent popularMovies={popularMovies}/>
+      <APIComponent popularMovies={popularMovies} setMovies={setMovies}/>
     </div>
   )
 }
