@@ -1,9 +1,9 @@
 import './App.css';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
-// const MONGODB_URI  = process.env.MONGODB_URI
+import APIComponent from './components/APIComponent'
 
-
+const apiKey = '5e986ac1b545d3a43184019b017d36f3'
 
 const App = () => {
   const [movies, setMovies] = useState([])
@@ -12,6 +12,8 @@ const App = () => {
   const [newImage, setNewImage] = useState('')
   const [newRating, setNewRating] = useState(0)
   const [newWatched, setNewWatched] = useState(false)
+  const [popularMovies, setPopularMovies] = useState([])
+
 
   useEffect(()=>{
       axios
@@ -42,8 +44,6 @@ const App = () => {
   }
 
   const handleNewMovieFormSubmit = () => {
-
-
     axios
       .post(
         'https://fast-bayou-47205.herokuapp.com/movies',
@@ -97,6 +97,18 @@ const App = () => {
       })
   }
 
+  const getMovies = () => {
+    axios.get('https://api.themoviedb.org/3/trending/all/day?api_key=' + apiKey)
+  }
+
+  useEffect(()=>{
+      axios
+          .get('https://api.themoviedb.org/3/trending/all/day?api_key=' + apiKey)
+          .then((response)=>{
+              setPopularMovies(response.data.results)
+          })
+  },[])
+
   return (
     <div>
       <h1>Movies</h1>
@@ -139,6 +151,7 @@ const App = () => {
           </div>
         )
       })}
+      <APIComponent popularMovies={popularMovies}/>
     </div>
   )
 }
