@@ -1,9 +1,7 @@
 import './App.css';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
-// const MONGODB_URI  = process.env.MONGODB_URI
-
-
+import APIComponent from './components/APIComponent'
 
 const App = () => {
   const [movies, setMovies] = useState([])
@@ -11,7 +9,8 @@ const App = () => {
   const [newGenre, setNewGenre] = useState('')
   const [newImage, setNewImage] = useState('')
   const [newRating, setNewRating] = useState(0)
-  const [newWatched, setNewWatched] = useState(false)
+  const [newWatched, setNewWatched] = useState()
+
 
   useEffect(()=>{
       axios
@@ -19,6 +18,7 @@ const App = () => {
           .then((response)=>{
               setMovies(response.data)
           })
+
   },[])
 
   const handleNewTitleChange = (e) => {
@@ -42,8 +42,6 @@ const App = () => {
   }
 
   const handleNewMovieFormSubmit = () => {
-
-
     axios
       .post(
         'https://fast-bayou-47205.herokuapp.com/movies',
@@ -97,6 +95,24 @@ const App = () => {
       })
   }
 
+  const handleChangeWatched = (movieData) => {
+    axios
+      .put(
+        `https://fast-bayou-47205.herokuapp.com/movies/${movieData._id}`,
+        {
+          watched: !movieData.watched
+        }
+      )
+      .then(() => {
+        axios
+        .get('https://fast-bayou-47205.herokuapp.com/movies')
+        .then((response) => {
+          setMovies(response.data)
+        })
+      })
+  }
+
+
   return (
     <div>
       <h1>Movies</h1>
@@ -110,37 +126,66 @@ const App = () => {
           <input type="submit" value="Add Movie to List"/>
         </form>
       </details>
-      {movies.map((movie) => {
+      <table>
+        <thead>
+          <tr>
+            <td>Number</td>
+            <td>Title</td>
+            <td>Image</td>
+            <td>Ranking</td>
+            <td>Watched</td>
+          </tr>
+        </thead>
+      {movies.map((movie, index) => {
         return (
-          <div className='flex-container'>
-            <h2>{movie.title}</h2>
-            <p>{movie.genre}</p>
-            <img src={movie.image} />
-            <details>
-            <summary>Edit</summary>
-              <form onSubmit={(event) => {
-                handleMovieUpdate(movie)
-              }}>
-                Title: <input type="text" defaultValue={movie.title} onChange={handleNewTitleChange} /><br/>
-                Genre: <input type="text" defaultValue={movie.genre} onChange={handleNewGenreChange} /><br/>
-                Image: <input type="text" defaultValue={movie.image} onChange={handleNewImageChange} /><br/>
-                Rating: <input type="number" defaultValue={movie.rating} onChange={handleNewRatingChange} /><br/>
-                Watched:
-                {movie.watched ?
-                   <input type="checkbox" defaultValue={movie.watched} checked onChange={handleNewWatchedChange} /> :
-                   <input type="checkbox" defaultValue={movie.watched} onChange={handleNewWatchedChange} />
-                 } <br/>
-                <input type="submit" value="Confirm Changes"/>
-              </form>
-            </details>
+          <tr key={movie._id} className='tableRow' >
+
+            <td>{index + 1}</td>
+            <td>{movie.title}</td>
+            <td><img src={movie.image} /></td>
+            <td>{movie.rating}</td>
+            <td>
+                {
+                  movie.watched ?
+                  <input type='checkbox' checked onChange={(event) => {
+                    handleChangeWatched(movie)
+                  }}/> :
+                  <input type='checkbox' onChange={(event) => {
+                    handleChangeWatched(movie)
+                  }}/>
+                }
+            </td>
+
             <button onClick={(event) => {
               handleDelete(movie)
             }}>Remove</button>
-          </div>
+          </tr>
         )
       })}
+      </table>
+      <APIComponent setMovies={setMovies}/>
     </div>
   )
 }
 
 export default App;
+
+
+//code graveyyard
+// <details>
+// <summary>Edit</summary>
+//   <form onSubmit={(event) => {
+//     handleMovieUpdate(movie)
+//   }}>
+//     Title: <input type="text" defaultValue={movie.title} onChange={handleNewTitleChange} /><br/>
+//     Genre: <input type="text" defaultValue={movie.genre} onChange={handleNewGenreChange} /><br/>
+//     Image: <input type="text" defaultValue={movie.image} onChange={handleNewImageChange} /><br/>
+//     Rating: <input type="number" defaultValue={movie.rating} onChange={handleNewRatingChange} /><br/>
+//     Watched:
+//     {movie.watched ?
+//        <input type="checkbox" defaultValue={movie.watched} checked onChange={handleNewWatchedChange} /> :
+//        <input type="checkbox" defaultValue={movie.watched} onChange={handleNewWatchedChange} />
+//      } <br/>
+//     <input type="submit" value="Confirm Changes"/>
+//   </form>
+// </details>
