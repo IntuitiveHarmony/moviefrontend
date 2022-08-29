@@ -112,12 +112,25 @@ const App = () => {
           <input type="submit" value="Add Movie to List"/>
         </form>
       </details>
-      {movies.map((movie) => {
+      <table>
+        <thead>
+          <tr>
+            <td>Number</td>
+            <td>Title</td>
+            <td>Image</td>
+            <td>Ranking</td>
+            <td>Watched</td>
+          </tr>
+        </thead>
+      {movies.map((movie, index) => {
         return (
-          <div key={movie._id} className='flex-container' >
-            <h2>{movie.title}</h2>
-            <p>{movie.genre}</p>
-            <img src={movie.image} />
+          <tr key={movie._id} className='tableRow' >
+
+            <td>{index + 1}</td>
+            <td>{movie.title}</td>
+            <td><img src={movie.image} /></td>
+            <td>{movie.vote_average}</td>
+            <td>{movie.watched}</td>
             <details>
             <summary>Edit</summary>
               <form onSubmit={(event) => {
@@ -138,9 +151,10 @@ const App = () => {
             <button onClick={(event) => {
               handleDelete(movie)
             }}>Remove</button>
-          </div>
+          </tr>
         )
       })}
+      </table>
       <APIComponent setMovies={setMovies}/>
     </div>
   )
