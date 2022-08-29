@@ -15,7 +15,7 @@ const App = () => {
 
   useEffect(()=>{
       axios
-          .get('http://localhost:3000/movies')
+          .get('https://fast-bayou-47205.herokuapp.com/movies')
           .then((response)=>{
               setMovies(response.data)
           })
@@ -46,7 +46,7 @@ const App = () => {
 
     axios
       .post(
-        'http://localhost:3000/movies',
+        'https://fast-bayou-47205.herokuapp.com/movies',
         {
           title: newTitle,
           genre: newGenre,
@@ -56,7 +56,7 @@ const App = () => {
         }
       ).then(() => {
       axios
-        .get('http://localhost:3000/movies')
+        .get('https://fast-bayou-47205.herokuapp.com/movies')
         .then((response) => {
           console.log(response.data)
           setMovies(response.data)
@@ -67,7 +67,7 @@ const App = () => {
   const handleMovieUpdate = (movieData) => {
     axios
       .put(
-        `http://localhost:3000/movies/${movieData._id}`,
+        `https://fast-bayou-47205.herokuapp.com/movies/${movieData._id}`,
         {
           title: newTitle,
           genre: newGenre,
@@ -78,7 +78,7 @@ const App = () => {
       )
       .then(() => {
         axios
-        .get('http://localhost:3000/movies')
+        .get('https://fast-bayou-47205.herokuapp.com/movies')
         .then((response) => {
           setMovies(response.data)
         })
@@ -87,10 +87,10 @@ const App = () => {
 
   const handleDelete = (movieData) => {
     axios
-      .delete(`http://localhost:3000/movies/${movieData._id}`)
+      .delete(`https://fast-bayou-47205.herokuapp.com/movies/${movieData._id}`)
       .then(() => {
         axios
-        .get('http://localhost:3000/movies')
+        .get('https://fast-bayou-47205.herokuapp.com/movies')
         .then((response) => {
           setMovies(response.data)
         })
