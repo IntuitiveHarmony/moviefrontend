@@ -1,8 +1,21 @@
 import axios from 'axios'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+
+const apiKey = '5e986ac1b545d3a43184019b017d36f3'
 
 const APIComponent = (props) => {
   let [imageString, setImageString] = useState('https://image.tmdb.org/t/p/w92')
+  const [popularMovies, setPopularMovies] = useState([])
+
+  useEffect(()=>{
+      axios
+          .get('https://api.themoviedb.org/3/trending/all/day?api_key=' + apiKey)
+          .then((response)=>{
+            console.log(response.data);
+
+              setPopularMovies(response.data.results)
+          })
+  },[])
 
 
   const handleAddPopularMovieToList = (movieData) => {
@@ -32,9 +45,9 @@ const APIComponent = (props) => {
     <div>
       <h1>Popular Movies</h1>
       <ul>
-        {props.popularMovies.map((movie) => {
+        {popularMovies.map((movie) => {
           return (
-            <div>
+            <div key={movie.id}>
               {
                 (movie.title) ?
                 <li>{movie.title}</li> :
