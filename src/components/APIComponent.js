@@ -10,15 +10,16 @@ const APIComponent = (props) => {
   let [page, setPage] = useState(1)
   let [newQuery, setNewQuery] = useState('')
   let [selectionOptions, setSelectionOptions] = useState([])
-  let [genreID, setGenreID] = useState(6)
+  let [genreID, setGenreID] = useState('popular')
   let [movieListByGenre, setMovieListByGenre] = useState([])
+  let [queryPage, setQueryPage] = useState(1)
 
   useEffect(()=>{
       axios
           .get('https://api.themoviedb.org/3/trending/all/day?api_key=' + apiKey)
           .then((response)=>{
             console.log(response.data, 'useeffect');
-              setPopularMovies(response.data.results)
+              setSuggestedMovies(response.data.results)
           })
   }, [])
 
@@ -45,11 +46,31 @@ const APIComponent = (props) => {
 
   const handleLoadNextPage = () => {
     setPage(page += 1)
+    // axios
+    //   .get('https://api.themoviedb.org/3/trending/all/day?api_key=' + apiKey + '&page=' + page)
+    //   .then((response)=>{
+    //     //console.log(response.data);
+    //     setSuggestedMovies(response.data.results)
+    //   })
+    genreID === 'popular' ?
     axios
       .get('https://api.themoviedb.org/3/trending/all/day?api_key=' + apiKey + '&page=' + page)
       .then((response)=>{
         //console.log(response.data);
-        setPopularMovies(response.data.results)
+        setSuggestedMovies(response.data.results)
+      })
+        :
+    genreID === 'topRated' ?
+    axios
+    .get('https://api.themoviedb.org/3/movie/top_rated?api_key=' + apiKey + '&language=en-US&page=1' + '&page=' + page)
+      .then((response)=>{
+        setSuggestedMovies(response.data.results)
+      })
+        :
+    axios
+      .get('https://api.themoviedb.org/3/discover/movie?api_key=' + apiKey + '&language=en-US&sort_by=popularity.desc&include_adult=false&page=1&with_genres=' + genreID + '&page=' + page)
+      .then((response)=>{
+        setSuggestedMovies(response.data.results)
       })
   }
 
@@ -57,25 +78,30 @@ const APIComponent = (props) => {
     page > 1 ?
     setPage(page -= 1) :
     setPage(1)
+    // axios
+    //   .get('https://api.themoviedb.org/3/trending/all/day?api_key=' + apiKey + '&page=' + page)
+    //   .then((response)=>{
+    //       setSuggestedMovies(response.data.results)
+    //   })
+    genreID === 'popular' ?
     axios
       .get('https://api.themoviedb.org/3/trending/all/day?api_key=' + apiKey + '&page=' + page)
       .then((response)=>{
-          setPopularMovies(response.data.results)
+        //console.log(response.data);
+        setSuggestedMovies(response.data.results)
       })
-  }
-
-  const handleQueryChange = (e) => {
-    console.log(newQuery, 'onchange');
-    setNewQuery(e.target.value)
-  }
-
-  const handleQueryFormSubmit = () => {
-    console.log('https://api.themoviedb.org/3/search/movie?api_key=' + apiKey + '&language=en-US&page=1&include_adult=false&query=' + newQuery)
+        :
+    genreID === 'topRated' ?
     axios
-      .get('https://api.themoviedb.org/3/search/movie?api_key=' + apiKey + '&language=en-US&page=1&include_adult=false&query=' + newQuery)
+    .get('https://api.themoviedb.org/3/movie/top_rated?api_key=' + apiKey + '&language=en-US&page=1' + '&page=' + page)
       .then((response)=>{
-          console.log(response.data);
-          setPopularMovies(response.data.results)
+        setSuggestedMovies(response.data.results)
+      })
+        :
+    axios
+      .get('https://api.themoviedb.org/3/discover/movie?api_key=' + apiKey + '&language=en-US&sort_by=popularity.desc&include_adult=false&page=1&with_genres=' + genreID + '&page=' + page)
+      .then((response)=>{
+        setSuggestedMovies(response.data.results)
       })
   }
 
@@ -89,25 +115,79 @@ const APIComponent = (props) => {
   }, [])
 
   const handleChangeGenre = (e) => {
-    console.log(e.target.value, 'correct')
+    setPage(1)
+    console.log(e.target.value, 'target value')
     setGenreID(genreID = e.target.value)
-    console.log(genreID, 'doesnt switch')
+    console.log(genreID, 'genre ID')
 
+    e.target.value === 'popular' ?
+    axios
+      .get('https://api.themoviedb.org/3/trending/all/day?api_key=' + apiKey)
+      .then((response)=>{
+        //console.log(response.data);
+        setSuggestedMovies(response.data.results)
+      })
+        :
+    e.target.value === 'topRated' ?
+    axios
+    .get('https://api.themoviedb.org/3/movie/top_rated?api_key=' + apiKey + '&language=en-US&page=1')
+      .then((response)=>{
+        setSuggestedMovies(response.data.results)
+      })
+        :
     axios
       .get('https://api.themoviedb.org/3/discover/movie?api_key=' + apiKey + '&language=en-US&sort_by=popularity.desc&include_adult=false&page=1&with_genres=' + genreID)
       .then((response)=>{
-        setPopularMovies(response.data.results)
+        setSuggestedMovies(response.data.results)
       })
-      //console.log(popularMovies, 'check');
+      //console.log(suggestedMovies, 'check');
   }
 
+  const handleQueryChange = (e) => {
+    console.log(newQuery, 'onchange');
+    setNewQuery(e.target.value)
+  }
 
+  const handleQueryFormSubmit = () => {
+    console.log('https://api.themoviedb.org/3/search/movie?api_key=' + apiKey + '&language=en-US&page=1&include_adult=false&query=' + newQuery)
+    axios
+      .get('https://api.themoviedb.org/3/search/movie?api_key=' + apiKey + '&language=en-US&page=1&include_adult=false&query=' + newQuery)
+      .then((response)=>{
+          console.log(response.data);
+          setSuggestedMovies(response.data.results)
+      })
+  }
+
+  const handleNextQueryResult = () => {
+    setQueryPage(queryPage += 1)
+    console.log(queryPage);
+    axios
+      .get('https://api.themoviedb.org/3/search/movie?api_key=' + apiKey + '&language=en-US&page=1&include_adult=false&query=' + newQuery + '&page=' + queryPage)
+      .then((response)=>{
+          console.log(response.data);
+          setSuggestedMovies(response.data.results)
+      })
+  }
+
+  const handlePrevQueryResult = () => {
+    queryPage > 1 ?
+    setQueryPage(queryPage -= 1) :
+    setQueryPage(1)
+    console.log(queryPage);
+    axios
+      .get('https://api.themoviedb.org/3/search/movie?api_key=' + apiKey + '&language=en-US&page=1&include_adult=false&query=' + newQuery + '&page=' + queryPage)
+      .then((response)=>{
+          console.log(response.data);
+          setSuggestedMovies(response.data.results)
+      })
+  }
 
   return (
     <div>
       <h1>Popular Movies</h1>
       <select onChange={handleChangeGenre}>
-        <option value='popular'>popular</option>
+        <option value='popular'>Popular</option>
+        <option value='topRated'>Top-Rated</option>
         {selectionOptions.map((option) => {
           return (
             <option
@@ -120,10 +200,13 @@ const APIComponent = (props) => {
       <button onClick={handleLoadPreviousPage}>Previous</button>
       <button onClick={handleLoadNextPage}>Next</button><br/><br/>
       <input type='text' onKeyUp={handleQueryChange}/>
-      <button onClick={handleQueryFormSubmit}>Search by Title</button>
+      <button onClick={handleQueryFormSubmit}>Search by Title</button><br/>
+      <button onClick={handlePrevQueryResult}>Previous Result</button>
+      <button onClick={handleNextQueryResult}>Next Result</button>
+
 
       <ul>
-        {popularMovies.map((movie) => {
+        {suggestedMovies.map((movie) => {
           return (
             <div key={movie.id}>
               {
@@ -136,7 +219,6 @@ const APIComponent = (props) => {
                 handleAddPopularMovieToList(movie)
               }}>Add to List</button>
             </div>
-
           )
         })}
       </ul>
