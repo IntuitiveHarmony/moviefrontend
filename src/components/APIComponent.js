@@ -7,10 +7,11 @@ const APIComponent = (props) => {
   let [imageString, setImageString] = useState('https://image.tmdb.org/t/p/w92')
   const [popularMovies, setPopularMovies] = useState([])
   const [newRating, setNewRating] = useState(0)
+  let [page, setPage] = useState(1)
 
   useEffect(()=>{
       axios
-          .get('https://api.themoviedb.org/3/trending/all/day?api_key=' + apiKey)
+          .get('https://api.themoviedb.org/3/trending/all/day?api_key=' + apiKey + '&page=' + page)
           .then((response)=>{
             console.log(response.data);
 
@@ -39,11 +40,36 @@ const APIComponent = (props) => {
     })
   }
 
+  const handleLoadNextPage = () => {
+    setPage(page += 1)
+    axios
+      .get('https://api.themoviedb.org/3/trending/all/day?api_key=' + apiKey + '&page=' + page)
+      .then((response)=>{
+        console.log(response.data);
+
+          setPopularMovies(response.data.results)
+      })
+  }
+
+  const handleLoadPreviousPage = () => {
+    page > 1 ?
+    setPage(page -= 1) :
+    setPage(1)
+    axios
+      .get('https://api.themoviedb.org/3/trending/all/day?api_key=' + apiKey + '&page=' + page)
+      .then((response)=>{
+        console.log(response.data);
+
+          setPopularMovies(response.data.results)
+      })
+  }
 
 
   return (
     <div>
       <h1>Popular Movies</h1>
+      <button onClick={handleLoadPreviousPage}>Previous</button>
+      <button onClick={handleLoadNextPage}>Next</button>
       <ul>
         {popularMovies.map((movie) => {
           return (
