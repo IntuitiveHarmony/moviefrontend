@@ -4,8 +4,8 @@ import {useState, useEffect} from 'react'
 const apiKey = '5e986ac1b545d3a43184019b017d36f3'
 
 const APIComponent = (props) => {
-  let [imageString, setImageString] = useState('https://image.tmdb.org/t/p/w92')
-  const [suggestedMovies, setSuggestedMovies] = useState([])
+  let [imageString, setImageString] = useState('https://image.tmdb.org/t/p/w500')
+  const [sugestedMovies, setSugestedMovies] = useState([])
   const [newRating, setNewRating] = useState(0)
   let [page, setPage] = useState(1)
   let [newQuery, setNewQuery] = useState('')
