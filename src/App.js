@@ -2,6 +2,7 @@ import './App.css';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import APIComponent from './components/APIComponent'
+import Expand from './components/Expand'
 
 const App = () => {
   const [movies, setMovies] = useState([])
@@ -76,6 +77,13 @@ const App = () => {
 
   return (
     <div>
+      <div className='cardContainer'>
+      {movies.map((movie, index) => {
+        return (
+          <Expand movie={movie} handleDelete={handleDelete} handleChangeWatched={handleChangeWatched} />
+        )
+      })}
+      </div>
       <h1>Movies</h1>
       <table>
         <thead>

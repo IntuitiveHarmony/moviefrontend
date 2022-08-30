@@ -5,3 +5,22 @@ body {
   display: grid;
   grid-template-columns:
 }
+.cardContainer {
+  width: 90%;
+  margin: 2em;
+  display: flex;
+  flex-wrap: wrap;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: .2em;
+  box-shadow: 5px 5px 12px #888888;
+}
+.cardOpt {
+
+}
+.expand {
+  width: 15em;
+}
