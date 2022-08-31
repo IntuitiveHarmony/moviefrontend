@@ -8,7 +8,7 @@ body {
 .cardContainer {
   width: 90%;
   margin: 1em;
-  justify-content: space-aroun;
+  justify-content: space-around;
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap-reverse;
@@ -29,6 +29,7 @@ body {
   height: 1em;
 }
 .expandedCard {
+  margin: .7em;
   justify-content: space-between;
   width: 100%;
   display: flex;
