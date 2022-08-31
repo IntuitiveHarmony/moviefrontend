@@ -41,7 +41,6 @@ const [expand, setExpand] = useState(false)
         <img onClick={handleExpand} src={props.movie.image} />
           <div className='cardOption'>
             <img onClick={(event) => {props.handleDelete(props.movie)}} src='icons8-remove-24.png' className='delIcon'/>
-            <p>{props.movie.rating}</p>
             <input type='checkbox' onChange={(event) => {
               props.handleChangeWatched(props.movie)
             }}/>

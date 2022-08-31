@@ -58,6 +58,7 @@ a {
 }
 .expandedCard {
   margin: .7em;
+  margin-top: 20em;
   margin-left: 4em;
   padding-right: 70%;
   justify-content: space-between;
@@ -80,7 +81,7 @@ a {
   width: 90%;
 }
 .cardOverview {
-  
+
   margin-right: 7em;
 }
 
