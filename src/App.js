@@ -17,7 +17,8 @@ const App = () => {
       axios
           .get('https://fast-bayou-47205.herokuapp.com/movies')
           .then((response)=>{
-              setMovies(response.data)
+              setMovies(response.data.reverse())
+
           })
   },[])
 
@@ -50,7 +51,7 @@ const App = () => {
         axios
         .get('https://fast-bayou-47205.herokuapp.com/movies')
         .then((response) => {
-          setMovies(response.data)
+          setMovies(response.data.reverse())
         })
       })
   }
@@ -67,18 +68,21 @@ const App = () => {
         axios
         .get('https://fast-bayou-47205.herokuapp.com/movies')
         .then((response) => {
-          setMovies(response.data)
+          setMovies(response.data.reverse())
         })
       })
   }
 
 
 
+  // console.log(movies)
+  // console.log(movies.reverse() + 'reverse')
 
   return (
     <div>
     <h1>My Movies</h1>
       <div className='cardContainer'>
+
       {movies.map((movie, index) => {
         return (
           <Expand movie={movie} handleDelete={handleDelete} handleChangeWatched={handleChangeWatched} />

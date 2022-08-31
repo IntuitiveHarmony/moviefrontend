@@ -44,7 +44,7 @@ const APIComponent = (props) => {
         .get('https://fast-bayou-47205.herokuapp.com/movies')
         .then((response) => {
           //console.log(response.data)
-          props.setMovies(response.data)
+          props.setMovies(response.data.reverse())
         })
     })
   }
