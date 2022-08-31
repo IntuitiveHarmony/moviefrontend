@@ -18,6 +18,7 @@ const App = () => {
           .get('https://fast-bayou-47205.herokuapp.com/movies')
           .then((response)=>{
               setMovies(response.data.reverse())
+
           })
   },[])
 
@@ -71,7 +72,6 @@ const App = () => {
         })
       })
   }
-
 
 
   return (

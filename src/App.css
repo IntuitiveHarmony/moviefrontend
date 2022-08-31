@@ -36,6 +36,7 @@ a {
   margin: 1em;
   justify-content: space-around;
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
 
@@ -57,6 +58,8 @@ a {
 }
 .expandedCard {
   margin: .7em;
+  margin-left: 4em;
+  padding-right: 70%;
   justify-content: space-between;
   width: 100%;
   display: flex;
@@ -71,9 +74,13 @@ a {
   height: 25em;
 }
 .infoTainer {
-  width: 60em;
+  margin-left: 1em;
+}
+.info {
+  width: 90%;
 }
 .cardOverview {
+  
   margin-right: 7em;
 }
 
