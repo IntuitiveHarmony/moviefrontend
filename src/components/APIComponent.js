@@ -31,8 +31,12 @@ const APIComponent = (props) => {
         'https://fast-bayou-47205.herokuapp.com/movies',
         {
           title: movieData.title ? movieData.title : movieData.name,
+          year: movieData.release_date,
+          genre: movieData.genre_ids,
           image: imageString + movieData.poster_path,
+          backdrop: imageString + movieData.backdrop_path,
           rating: Math.round(movieData.vote_average*10)/10,
+          overview: movieData.overview,
           watched: false
         }
       ).then(() => {

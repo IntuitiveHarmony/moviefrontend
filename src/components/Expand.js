@@ -14,15 +14,37 @@ const [expand, setExpand] = useState(false)
 
   return (
     <>
-    {expand ?   <div className='card expand'>
-        <img onClick={handleExpand} src={props.movie.image} />
+
+    {expand ?
+      <div className='expandedCard'>
+
+        <img onClick={handleExpand} src={props.movie.image} className='expandedCardImg'/>
+        <div className='infoTainer'>
+        {
+          (props.movie.title) ?
+          <p className='cardOverview'>{props.movie.title}</p> :
+          <p className='cardOverview'>{props.movie.name}</p>
+        }
+        <p>Realease Date: {props.movie.year}</p>
+        <p>{props.movie.overview}</p>
+
           <div className='cardOpt'>
-            <img onClick={(event) => {props.handleDelete(props.smovie)}} src='icons8-remove-24.png'/>
+            <img onClick={(event) => {props.handleDelete(props.movie)}} src='icons8-remove-24.png'/>
+            Watched: <input type='checkbox' onChange={(event) => {
+              props.handleChangeWatched(props.movie)
+            }}/>
           </div>
-        </div> : <div className='card'>
+          </div>
+        </div>
+        :
+        <div className='card'>
         <img onClick={handleExpand} src={props.movie.image} />
-          <div className='cardOpt'>
-            <img onClick={(event) => {props.handleDelete(props.smovie)}} src='icons8-remove-24.png'/>
+          <div className='cardOption'>
+            <img onClick={(event) => {props.handleDelete(props.movie)}} src='icons8-remove-24.png' className='delIcon'/>
+            <p>{props.movie.rating}</p>
+            <input type='checkbox' onChange={(event) => {
+              props.handleChangeWatched(props.movie)
+            }}/>
           </div>
         </div>}
 
