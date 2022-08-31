@@ -1,7 +1,52 @@
 body {
-  text-align: center;
+
 }
 .gridContainer {
   display: grid;
   grid-template-columns:
+}
+.cardContainer {
+  width: 90%;
+  margin: 1em;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap-reverse;
+  align-items: flex-start;
+}
+.card {
+  width: 6em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: .2em;
+  box-shadow: 5px 5px 12px #888888;
+  cursor: pointer;
+}
+.cardOption {
+  display: flex;
+}
+.delIcon {
+  height: 1em;
+}
+.expandedCard {
+  margin: .7em;
+  justify-content: space-between;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  width: 20em;
+  box-shadow: 5px 5px 12px #888888;
+}
+.expandedCardImg {
+  margin: .5em;
+  width: 16em;
+  height: 25em;
+}
+.infoTainer {
+  width: 60em;
+}
+.cardOverview {
+  margin-right: 7em;
 }
