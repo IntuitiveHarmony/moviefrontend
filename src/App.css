@@ -6,8 +6,9 @@ body {
   grid-template-columns:
 }
 .cardContainer {
-  width: 95%;
-  margin: 2em;
+  width: 90%;
+  margin: 1em;
+  justify-content: space-aroun;
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap-reverse;
@@ -23,14 +24,27 @@ body {
 }
 .cardOption {
   display: flex;
-
+}
+.delIcon {
+  height: 1em;
 }
 .expandedCard {
+  justify-content: space-between;
+  width: 100%;
+  display: flex;
   flex-direction: row;
   flex-grow: 1;
   width: 20em;
   box-shadow: 5px 5px 12px #888888;
 }
-.delIcon {
-  height: 1em;
+.expandedCardImg {
+  margin: .5em;
+  width: 16em;
+  height: 25em;
+}
+.infoTainer {
+  width: 60em;
+}
+.cardOverview {
+  margin-right: 7em;
 }
