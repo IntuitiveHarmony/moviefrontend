@@ -21,6 +21,7 @@ body {
   justify-content: space-around;
   margin: .2em;
   box-shadow: 5px 5px 12px #888888;
+  cursor: pointer;
 }
 .cardOption {
   display: flex;
