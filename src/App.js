@@ -77,6 +77,7 @@ const App = () => {
 
   return (
     <div>
+    <h1>My Movies</h1>
       <div className='cardContainer'>
       {movies.map((movie, index) => {
         return (

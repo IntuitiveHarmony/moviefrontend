@@ -14,15 +14,28 @@ const [expand, setExpand] = useState(false)
 
   return (
     <>
-    {expand ?   <div className='card expand'>
-        <img onClick={handleExpand} src={props.movie.image} />
+
+    {expand ?
+      <div className='card expand'>
+        <img onClick={handleExpand} src={props.movie.image} className='cardImg'/>
+        {
+          (props.movie.title) ?
+          <li>{props.movie.title}</li> :
+          <li>{props.movie.name}</li>
+        }
           <div className='cardOpt'>
             <img onClick={(event) => {props.handleDelete(props.movie)}} src='icons8-remove-24.png'/>
           </div>
-        </div> : <div className='card'>
+        </div>
+        :
+        <div className='card'>
         <img onClick={handleExpand} src={props.movie.image} />
-          <div className='cardOpt'>
-            <img onClick={(event) => {props.handleDelete(props.movie)}} src='icons8-remove-24.png'/>
+          <div className='cardOption'>
+            <img onClick={(event) => {props.handleDelete(props.movie)}} src='icons8-remove-24.png' className='delIcon'/>
+            <p>{props.movie.rating}</p>
+            <input type='checkbox' onChange={(event) => {
+              props.handleChangeWatched(props.movie)
+            }}/>
           </div>
         </div>}
 

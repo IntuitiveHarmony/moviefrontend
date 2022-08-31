@@ -12,15 +12,20 @@ body {
   flex-wrap: wrap;
 }
 .card {
+  width: 6em;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   margin: .2em;
   box-shadow: 5px 5px 12px #888888;
 }
-.cardOpt {
+.cardOption {
+  display: flex;
 
 }
 .expand {
-  width: 15em;
+  width: 20em;
+}
+.delIcon {
+  height: 1em;
 }
