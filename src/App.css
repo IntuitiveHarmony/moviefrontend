@@ -1,15 +1,17 @@
 body {
-  text-align: center;
+
 }
 .gridContainer {
   display: grid;
   grid-template-columns:
 }
 .cardContainer {
-  width: 90%;
+  width: 95%;
   margin: 2em;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  flex-wrap: wrap-reverse;
+  align-items: flex-start;
 }
 .card {
   width: 6em;
@@ -23,8 +25,11 @@ body {
   display: flex;
 
 }
-.expand {
+.expandedCard {
+  flex-direction: row;
+  flex-grow: 1;
   width: 20em;
+  box-shadow: 5px 5px 12px #888888;
 }
 .delIcon {
   height: 1em;

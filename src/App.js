@@ -84,54 +84,82 @@ const App = () => {
           <Expand movie={movie} handleDelete={handleDelete} handleChangeWatched={handleChangeWatched} />
         )
       })}
-      </div>
-      <h1>Movies</h1>
-      <table>
-        <thead>
-          <tr>
-            <td>Number</td>
-            <td>Title</td>
-            <td>Image</td>
-            <td>Ranking</td>
-            <td>Watched</td>
-          </tr>
-        </thead>
-        <tbody>
-          {movies.map((movie, index) => {
-            return (
-              <tr key={movie._id} className='tableRow' >
 
-                <td>{index + 1}</td>
-                <td>{movie.title}</td>
-                <td><img src={movie.image} /></td>
-                <td>{movie.rating}</td>
-                <td>
-                    {
-                      movie.watched ?
-                      <input type='checkbox' checked onChange={(event) => {
-                        handleChangeWatched(movie)
-                      }}/> :
-                      <input type='checkbox' onChange={(event) => {
-                        handleChangeWatched(movie)
-                      }}/>
-                    }
-                </td>
-                <td>
-                  <button onClick={(event) => {
-                    handleDelete(movie)
-                  }}>Remove</button>
-                </td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+    </div>
+//-----------------------------
+//  Jason Cut
+//----------------------------
+
       <APIComponent setMovies={setMovies}/>
     </div>
   )
 }
 
 export default App;
+//-------------------------------------------
+//  jason Took out for work on cards
+//------------------------------------------
+//
+// <h1>Movies</h1>
+// <table>
+//   <thead>
+//     <tr>
+//       <td>Number</td>
+//       <td>Title</td>
+//       <td>Image</td>
+//       <td>Ranking</td>
+//       <td>Watched</td>
+//     </tr>
+//   </thead>
+//   <tbody>
+//     {movies.map((movie, index) => {
+//       return (
+//         <tr key={movie._id} className='tableRow' >
+//
+//           <td>{index + 1}</td>
+//           <td>{movie.title}</td>
+//           <td><img src={movie.image} /></td>
+//           <td>{movie.rating}</td>
+//           <td>
+//               {
+//                 movie.watched ?
+//                 <input type='checkbox' checked onChange={(event) => {
+//                   handleChangeWatched(movie)
+//                 }}/> :
+//                 <input type='checkbox' onChange={(event) => {
+//                   handleChangeWatched(movie)
+//                 }}/>
+//               }
+//           </td>
+//           <td>
+//             <button onClick={(event) => {
+//               handleDelete(movie)
+//             }}>Remove</button>
+//           </td>
+//         </tr>
+//       )
+//     })}
+//   </tbody>
+// </table>
+//------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //code graveyyard

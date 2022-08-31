@@ -16,13 +16,17 @@ const [expand, setExpand] = useState(false)
     <>
 
     {expand ?
-      <div className='card expand'>
+      <div className='expandedCard'>
+      <div className='infoTainer'>
         <img onClick={handleExpand} src={props.movie.image} className='cardImg'/>
         {
           (props.movie.title) ?
-          <li>{props.movie.title}</li> :
-          <li>{props.movie.name}</li>
+          <p>{props.movie.title}</p> :
+          <p>{props.movie.name}</p>
         }
+        <p>Realease Date: {props.movie.year}</p>
+        <p>{props.movie.overview}</p>
+        </div>
           <div className='cardOpt'>
             <img onClick={(event) => {props.handleDelete(props.movie)}} src='icons8-remove-24.png'/>
           </div>
