@@ -1,10 +1,36 @@
 body {
+  text-align: center;
+}
+nav {
+  padding: 2em;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 90%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-bottom: 2px solid black;
+}
+#tmdb {
+  width: 60%;
+}
+.fa-solid {
+  font-size: 5vw;
+  color: black;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
+.big-title {
+  padding-top: 3em;
 }
-.gridContainer {
-  display: grid;
-  grid-template-columns:
-}
+
+
 .cardContainer {
   width: 90%;
   margin: 1em;
@@ -13,6 +39,7 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
+
 }
 .card {
   width: 6em;
@@ -55,4 +82,8 @@ body {
 .cardOverview {
   
   margin-right: 7em;
+}
+
+#search {
+  padding-top: 3em;
 }
