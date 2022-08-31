@@ -5,7 +5,7 @@ import APIComponent from './components/APIComponent'
 import Expand from './components/Expand'
 
 const App = () => {
-  const [movies, setMovies] = useState([])
+  let [movies, setMovies] = useState([])
   const [newTitle, setNewTitle] = useState('')
   const [newGenre, setNewGenre] = useState('')
   const [newImage, setNewImage] = useState('')
@@ -17,7 +17,7 @@ const App = () => {
       axios
           .get('https://fast-bayou-47205.herokuapp.com/movies')
           .then((response)=>{
-              setMovies(response.data)
+              setMovies(response.data.reverse())
           })
   },[])
 
@@ -50,7 +50,7 @@ const App = () => {
         axios
         .get('https://fast-bayou-47205.herokuapp.com/movies')
         .then((response) => {
-          setMovies(response.data)
+          setMovies(response.data.reverse())
         })
       })
   }
@@ -67,11 +67,10 @@ const App = () => {
         axios
         .get('https://fast-bayou-47205.herokuapp.com/movies')
         .then((response) => {
-          setMovies(response.data)
+          setMovies(response.data.reverse())
         })
       })
   }
-
 
 
 
@@ -87,6 +86,7 @@ const App = () => {
     </nav>
     <h1 id='home' className='big-title'>My Movies</h1>
       <div className='cardContainer'>
+
       {movies.map((movie, index) => {
         return (
           <Expand movie={movie} handleDelete={handleDelete} handleChangeWatched={handleChangeWatched} />

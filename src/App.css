@@ -1,5 +1,5 @@
 body {
-
+  text-align: center;
 }
 nav {
   padding: 2em;
@@ -31,18 +31,14 @@ a {
 }
 
 
-.gridContainer {
-  display: grid;
-  grid-template-columns:
-}
 .cardContainer {
   width: 90%;
   margin: 1em;
   justify-content: space-around;
   display: flex;
-  flex-direction: row-reverse;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
   align-items: flex-start;
+
 }
 .card {
   width: 6em;
