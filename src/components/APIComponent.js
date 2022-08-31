@@ -189,7 +189,7 @@ const APIComponent = (props) => {
 
   return (
     <div>
-      <h1>Popular Movies</h1>
+      <h1 id='search'>Popular Movies</h1>
       <select onChange={handleChangeGenre}>
         <option value='popular'>Popular</option>
         <option value='topRated'>Top-Rated</option>
