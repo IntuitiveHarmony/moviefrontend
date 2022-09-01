@@ -14,10 +14,8 @@ const [expand, setExpand] = useState(false)
 
   return (
     <>
-
     {expand ?
       <div className='expandedCard' id='expandID'>
-
         <img onClick={handleExpand} src={props.movie.image} className='expandedCardImg'/>
         <div className='infoTainer'>
         {
@@ -27,7 +25,6 @@ const [expand, setExpand] = useState(false)
         }
         <p>Realease Date: {props.movie.year}</p>
         <p className='info'>{props.movie.overview}</p>
-
           <div className='cardOpt'>
             <img onClick={(event) => {props.handleDelete(props.movie)}} src='icons8-remove-24.png'/>
             Watched: <input type='checkbox' onChange={(event) => {
@@ -37,16 +34,17 @@ const [expand, setExpand] = useState(false)
           </div>
         </div>
         :
-        <a href='#expandID'><div className='card'>
+        <a href='#expandID'><div className='cardq'>
         <img onClick={handleExpand} src={props.movie.image} />
           <div className='cardOption'>
             <img onClick={(event) => {props.handleDelete(props.movie)}} src='icons8-remove-24.png' className='delIcon'/>
-            <input type='checkbox' onChange={(event) => {
-              props.handleChangeWatched(props.movie)
-            }}/>
+            <div>
+              Watched:<input type='checkbox' onChange={(event) => {
+                props.handleChangeWatched(props.movie)
+              }}/>
+            </div>  
           </div>
         </div></a>}
-
     </>
   )
 
