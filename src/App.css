@@ -49,14 +49,27 @@ a {
   margin: .2em;
   box-shadow: 5px 5px 12px #888888;
   cursor: pointer;
-
+  position: relative;
+}
+.deleteContainer {
+  position: absolute;
+  top: .3em;
+  left: .3em;
+  z-index: 3;
+}
+.checkContainer {
+  position: absolute;
+  top: .1em;
+  right: .2em;
+  z-index: 3;
+  margin-bottom: 3em;
 }
 
 .cardHover {
   width: 6em;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: .2em;
   box-shadow: 5px 5px 12px #888888;
   cursor: pointer;
@@ -79,6 +92,10 @@ a {
 }
 .delIcon {
   height: 1em;
+  color: white;
+}
+.deleteBtn {
+  color: rgb(255,  10, 45);
 }
 .expandedCard {
   margin: .7em;

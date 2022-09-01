@@ -39,25 +39,36 @@ let [hover, setHover] = useState(false)
         </div>
         :
         hover ?
-        <a href='#expandID' onMouseEnter={()=> setHover(true)} onMouseLeave={()=>setHover(false)}><div className='card'>
+        <a href='#expandID' onMouseEnter={()=> setHover(true)} onMouseLeave={()=>setHover(false)}><div className='cardHover'>
         <img onClick={handleExpand} src={props.movie.image} />
-          <div className='cardOption'>
-            <img onClick={(event) => {props.handleDelete(props.movie)}} src='icons8-remove-24.png' className='delIcon'/>
-            <input type='checkbox' onChange={(event) => {
-              props.handleChangeWatched(props.movie)
-            }}/>
+
+
+          <div className='hoverMenu'>
+          <div className='deleteContainer'>
+
           </div>
+            <div className='checkContainer'>
+            Watched:<input type='checkbox' onChange={(event) => {
+            props.handleChangeWatched(props.movie)
+            }}/>
+
+            </div>
+            <p onClick={(event) => {props.handleDelete(props.movie)}} className='deleteBtn'>Delete</p>
+            <p onClick={handleExpand}>Details</p>
+
+          </div>
+
+
         </div></a>
 
         :
         <a href='#expandID' onMouseEnter={()=> setHover(true)} onMouseLeave={()=>setHover(false)}><div className='card'>
         <img onClick={handleExpand} src={props.movie.image} />
-          <div className='cardOption'>
-            <img onClick={(event) => {props.handleDelete(props.movie)}} src='icons8-remove-24.png' className='delIcon'/>
-            <input type='checkbox' onChange={(event) => {
-              props.handleChangeWatched(props.movie)
-            }}/>
-          </div>
+        <div className='checkContainer'>
+          <input type='checkbox' onChange={(event) => {
+          props.handleChangeWatched(props.movie)
+          }}/>
+        </div>
         </div></a>}
 
     </>

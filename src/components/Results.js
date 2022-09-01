@@ -49,7 +49,7 @@ const Results = (props) => {
             <p onClick={(event) => {
               props.handleAddPopularMovieToList(props.movie)
               }}>+ My Movies</p>
-            <p onClick={handleExpand}>Overview</p>
+            <p onClick={handleExpand}>Details</p>
 
 
           </div>
