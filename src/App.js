@@ -76,7 +76,7 @@ const App = () => {
 
 
   return (
-    <div >
+    <>
     <nav>
 
 
