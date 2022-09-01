@@ -61,7 +61,7 @@ const Results = (props) => {
 
           </div></a>
           :
-        <a href='#expandID' onMouseEnter={()=> setHover(true)} onMouseLeave={()=>setHover(false)}><div className='card' >
+        <a href='#expandID' onMouseEnter={()=> setHover(true)} onMouseLeave={()=>setHover(false)}><div className='not-card' >
         <img onClick={handleExpand} src={imageString + props.movie.poster_path} />
           <div className='cardOption'>
           </div>
