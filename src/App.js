@@ -97,7 +97,17 @@ const App = () => {
     </div>
 
       <APIComponent setMovies={setMovies}/>
-    </div>
+      <footer class='position-absolute right-0'>
+        <div class="container d-flex justify-content-between">
+          <a class='footer-a' href="#"><i class="fa-regular fa-copyright"></i>Company</a>
+          <a class='footer-a' >Designed by Tyler and Jason</a>
+          <div class="">
+            <a class='footer-a' href="https://github.com/tylern16"><i class="fa-brands fa-github"></i></a>
+            <a class='footer-a' href="https://www.linkedin.com/in/tylernenninger/"><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+        </div>
+      </footer>
+    </>
   )
 }
 

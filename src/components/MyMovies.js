@@ -22,7 +22,6 @@ let [hover, setHover] = useState(false)
  }
   return (
     <>
-
     {expand ?
       <div className='expandedCard' id='expandID' onMouseLeave={minimize}>
 
@@ -35,7 +34,6 @@ let [hover, setHover] = useState(false)
         }
         <p>Realease Date: {props.movie.year}</p>
         <p className='info'>{props.movie.overview}</p>
-
           <div className='cardOpt'>
             <img onClick={(event) => {props.handleDelete(props.movie)}} src='icons8-remove-24.png'/>
             Watched: <input type='checkbox' onChange={(event) => {
@@ -76,7 +74,6 @@ let [hover, setHover] = useState(false)
           }}/>
         </div>
         </div></a>}
-
     </>
   )
 
