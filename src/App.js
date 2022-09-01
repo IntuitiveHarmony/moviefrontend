@@ -94,10 +94,7 @@ const App = () => {
       })}
 
     </div>
-//-----------------------------
-//  Jason Cut
-//----------------------------
-
+    
       <APIComponent setMovies={setMovies}/>
     </div>
   )

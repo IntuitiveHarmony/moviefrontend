@@ -49,6 +49,30 @@ a {
   margin: .2em;
   box-shadow: 5px 5px 12px #888888;
   cursor: pointer;
+
+}
+
+.cardHover {
+  width: 6em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: .2em;
+  box-shadow: 5px 5px 12px #888888;
+  cursor: pointer;
+  position: relative;
+}
+.addCard {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: rgba(60,60,60, .8);
+  position: absolute;
+  color: white;
+  z-index: 2;
+
 }
 .cardOption {
   display: flex;

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {useState, useEffect} from 'react'
+import Results from './Results'
 //components
 
 const apiKey = '5e986ac1b545d3a43184019b017d36f3'
@@ -210,28 +211,32 @@ const APIComponent = (props) => {
       <button onClick={handleNextQueryResult}>Next Result</button>
 
 
-      <ul>
+      <div className='cardContainer'>
         {suggestedMovies.map((movie) => {
           return (
-            <div key={movie.id}>
-              {
-                (movie.title) ?
-                <li>{movie.title}</li> :
-                <li>{movie.name}</li>
-              }
-              <img src={imageString + movie.poster_path}/>
-              <button onClick={(event) => {
-                handleAddPopularMovieToList(movie)
-              }}>Add to List</button>
-            </div>
+            <>
+              <Results movie={movie} handleAddPopularMovieToList={handleAddPopularMovieToList}/>
+            </>
           )
         })}
-      </ul>
+        </div>
     </div>
   )
 }
 
 export default APIComponent
+
+// <div key={movie.id}>
+//   {
+//     (movie.title) ?
+//     <li>{movie.title}</li> :
+//     <li>{movie.name}</li>
+//   }
+//   <img src={imageString + movie.poster_path}/>
+//   <button onClick={(event) => {
+//     handleAddPopularMovieToList(movie)
+//   }}>Add to List</button>
+// </div>
 
 
 //<input type='submit' value='search' onSubmit={handleQueryFormSubmit}/>
