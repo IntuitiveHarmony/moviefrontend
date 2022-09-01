@@ -76,26 +76,20 @@ const App = () => {
 
 
   return (
-    <div >
-    <nav>
-
-
-      <a href='#home'><i class="fa-solid fa-house"></i></a>
-      <img id='tmdb' src='https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_2-9665a76b1ae401a510ec1e0ca40ddcb3b0cfe45f1d51b77a308fea0845885648.svg' />
-      <a href='#search'><i class="fa-solid fa-clapperboard"></i></a>
-
-    </nav>
-    <h1 id='home' className='big-title'>My Movies</h1>
+    <>
+      <nav>
+        <a href='#home'><i class="fa-solid fa-house"></i></a>
+        <img id='tmdb' src='https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_2-9665a76b1ae401a510ec1e0ca40ddcb3b0cfe45f1d51b77a308fea0845885648.svg' />
+        <a href='#search'><i class="fa-solid fa-clapperboard"></i></a>
+      </nav>
+      <h1 id='home' className='big-title'>My Movies</h1>
       <div className='cardContainer'>
-
       {movies.map((movie, index) => {
         return (
           <MyMovies key={movie._id} movie={movie} handleDelete={handleDelete} handleChangeWatched={handleChangeWatched} setMinimize={setMinimize}  />
         )
       })}
-
-    </div>
-
+      </div>
       <APIComponent setMovies={setMovies}/>
       <footer class='position-absolute right-0'>
         <div class="container d-flex justify-content-between">
