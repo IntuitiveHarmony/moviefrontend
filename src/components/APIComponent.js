@@ -191,10 +191,9 @@ const APIComponent = (props) => {
 
   return (
     <div>
-      <h1 id='search'>Popular Movies</h1>
+      <h1 id='search'>Movie Database</h1>
       <div className='suggested-header'>
         <div className='genre-selector'>
-          <button onClick={handleLoadPreviousPage}>Previous</button>
           <select onChange={handleChangeGenre}>
             <option value='popular'>Popular</option>
             <option value='topRated'>Top-Rated</option>
@@ -207,16 +206,19 @@ const APIComponent = (props) => {
               )
             })}
           </select>
-          <span>Page: {page}</span>
-          <button onClick={handleLoadNextPage}>Next</button>
+          <div className='genre-container'>
+            <button className='btn btn-secondary btn-sm' onClick={handleLoadPreviousPage}>Previous</button>
+            <span>Page: {page}</span>
+            <button className='btn btn-secondary btn-sm' onClick={handleLoadNextPage}>Next</button>
+          </div>
         </div>
 
         <div className='search-container'>
           <input type='text' placeholder='search...' onKeyUp={handleQueryChange}/>
-          <button onClick={handleQueryFormSubmit}>Search by Title</button><br/>
-          <button onClick={handlePrevQueryResult}><i class="fa-solid fa-angle-left"></i></button>
+          <button className='btn btn-primary search' onClick={handleQueryFormSubmit}>Search by Title</button><br/>
+          <button className='btn btn-secondary btn-sm' onClick={handlePrevQueryResult}><i class="fa-solid fa-angle-left"></i></button>
           <span>Page: {queryPage}</span>
-          <button onClick={handleNextQueryResult}><i class="fa-solid fa-angle-right"></i></button>
+          <button  className='btn btn-secondary btn-sm' onClick={handleNextQueryResult}><i class="fa-solid fa-angle-right"></i></button>
         </div>
       </div>
 

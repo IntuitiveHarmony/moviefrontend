@@ -7,7 +7,7 @@ nav {
   display: flex;
   justify-content: space-between;
   position: fixed;
-  width: 90%;
+  width: 100%;
   top: 0;
   left: 0;
   z-index: 1;
@@ -26,20 +26,21 @@ a {
   color: inherit;
 }
 
+/* my movie list */
 .big-title {
   padding-top: 3em;
+  margin-top: 1em;
 }
 
 
 .cardContainer {
   width: 90%;
-  margin: 1em;
+  margin: 1em auto;
   justify-content: space-around;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
-
 }
 .card {
   width: 10em;
@@ -88,6 +89,7 @@ a {
 }
 .cardOption {
   display: flex;
+  justify-content: space-around;
 }
 .delIcon {
   height: 1em;
@@ -135,11 +137,58 @@ a {
 #expandID {
 
 }
-
+/* database nav */
 .suggested-header {
   display: flex;
   justify-content: space-around;
 }
+.genre-selector > div > button {
+  padding: 5px;
+  margin: 0;
+}
 .fa-angle-left, .fa-angle-right {
-  font-size: 3vw;
+  color: white;
+  font-size: 1.5vw;
+  padding: 0;
+}
+span {
+  padding: 1em;
+}
+.search {
+  margin: 1em 0;
+}
+select {
+  margin: 1em;
+}
+
+/* search results */
+.d-flex {
+  margin: 1em 2em;
+}
+.card {
+  width: 20%;
+  margin: 0.5em;
+  border-color: black;
+  justify-content: space-between;
+}
+.card-title {
+  font-size: 2vw;
+}
+.card > button {
+  cursor: pointer;
+}
+
+
+/* footer */
+footer {
+  height: 10%;
+  width: 100%;
+  padding: 1em;
+  margin-top: 1em;
+  color: black;
+  border-top: 2px solid black;
+}
+.footer-a {
+  color: black;
+  padding-bottom: 1em;
 }
