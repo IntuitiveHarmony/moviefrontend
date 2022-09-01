@@ -30,7 +30,7 @@ const Results = (props) => {
           <p className='cardOverview'>{props.movie.title}</p> :
           <p className='cardOverview'>{props.movie.name}</p>
         }
-        <p>Realease Date: {props.movie.year}</p>
+        <p>Release Date: {props.movie.year}</p>
         <p className='info'>{props.movie.overview}</p>
 
           <div className='cardOpt'>
