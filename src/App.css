@@ -1,26 +1,145 @@
 body {
   text-align: center;
 }
-.gridContainer {
-  display: grid;
-  grid-template-columns:
+nav {
+  padding: 2em;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 90%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-bottom: 2px solid black;
 }
+#tmdb {
+  width: 60%;
+}
+.fa-solid {
+  font-size: 5vw;
+  color: black;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.big-title {
+  padding-top: 3em;
+}
+
+
 .cardContainer {
   width: 90%;
-  margin: 2em;
+  margin: 1em;
+  justify-content: space-around;
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
+  align-items: flex-start;
+
 }
 .card {
+  width: 10em;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   margin: .2em;
   box-shadow: 5px 5px 12px #888888;
+  cursor: pointer;
+  position: relative;
 }
-.cardOpt {
+.deleteContainer {
+  position: absolute;
+  top: .3em;
+  left: .3em;
+  z-index: 3;
+}
+.checkContainer {
+  position: absolute;
+  top: .1em;
+  right: .2em;
+  z-index: 3;
+  margin-bottom: 3em;
+}
+
+.cardHover {
+  width: 10em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: .2em;
+  box-shadow: 5px 5px 12px #888888;
+  cursor: pointer;
+  position: relative;
+}
+.hoverMenu {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: rgba(60,60,60, .8);
+  position: absolute;
+  color: white;
+  z-index: 2;
+}
+.cardOption {
+  display: flex;
+}
+.delIcon {
+  height: 1em;
+  color: white;
+}
+.deleteBtn {
+  color: rgb(255,  125, 125);
+}
+.expandedCard {
+  align-content: stretch;
+  margin: .7em;
+  margin-left: 4em;
+  padding-right: 70%;
+  justify-content: space-between;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  width: 20em;
+  box-shadow: 5px 5px 12px #888888;
+}
+.expandedCardImg {
+  float: left;
+  margin: .5em;
+  width: 16em;
+  height: 25em;
+}
+.infoTainer {
+  float: right;
+  width: 90%;
+  margin-left: 1em;
+}
+.info {
+  width: 90%;
+}
+.cardOverview {
+  margin-right: 40em;
+}
+.searchBar {
+  padding-top: 4em;
+}
+#home {
+  padding-top: 4em;
+}
+#expandID {
 
 }
-.expand {
-  width: 15em;
+
+.suggested-header {
+  display: flex;
+  justify-content: space-around;
+}
+.fa-angle-left, .fa-angle-right {
+  font-size: 3vw;
 }

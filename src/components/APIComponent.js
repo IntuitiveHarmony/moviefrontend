@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {useState, useEffect} from 'react'
+import Results from './Results'
 //components
 
 const apiKey = '5e986ac1b545d3a43184019b017d36f3'
@@ -31,8 +32,12 @@ const APIComponent = (props) => {
         'https://fast-bayou-47205.herokuapp.com/movies',
         {
           title: movieData.title ? movieData.title : movieData.name,
+          year: movieData.release_date,
+          genre: movieData.genre_ids,
           image: imageString + movieData.poster_path,
+          backdrop: imageString + movieData.backdrop_path,
           rating: Math.round(movieData.vote_average*10)/10,
+          overview: movieData.overview,
           watched: false
         }
       ).then(() => {
@@ -40,7 +45,7 @@ const APIComponent = (props) => {
         .get('https://fast-bayou-47205.herokuapp.com/movies')
         .then((response) => {
           //console.log(response.data)
-          props.setMovies(response.data)
+          props.setMovies(response.data.reverse())
         })
     })
   }
@@ -150,6 +155,7 @@ const APIComponent = (props) => {
   }
 
   const handleQueryFormSubmit = () => {
+    setQueryPage(1)
     console.log('https://api.themoviedb.org/3/search/movie?api_key=' + apiKey + '&language=en-US&page=1&include_adult=false&query=' + newQuery)
     axios
       .get('https://api.themoviedb.org/3/search/movie?api_key=' + apiKey + '&language=en-US&page=1&include_adult=false&query=' + newQuery)
@@ -185,49 +191,62 @@ const APIComponent = (props) => {
 
   return (
     <div>
-      <h1>Popular Movies</h1>
-      <select onChange={handleChangeGenre}>
-        <option value='popular'>Popular</option>
-        <option value='topRated'>Top-Rated</option>
-        {selectionOptions.map((option) => {
-          return (
-            <option
-              key={option._id}
-              value={option.id}>{option.name}
-            </option>
-          )
-        })}
-      </select><br/><br/>
-      <button onClick={handleLoadPreviousPage}>Previous</button>
-      <button onClick={handleLoadNextPage}>Next</button><br/><br/>
-      <input type='text' onKeyUp={handleQueryChange}/>
-      <button onClick={handleQueryFormSubmit}>Search by Title</button><br/>
-      <button onClick={handlePrevQueryResult}>Previous Result</button>
-      <button onClick={handleNextQueryResult}>Next Result</button>
+      <h1 id='search'>Popular Movies</h1>
+      <div className='suggested-header'>
+        <div className='genre-selector'>
+          <button onClick={handleLoadPreviousPage}>Previous</button>
+          <select onChange={handleChangeGenre}>
+            <option value='popular'>Popular</option>
+            <option value='topRated'>Top-Rated</option>
+            {selectionOptions.map((option) => {
+              return (
+                <option
+                  key={option._id}
+                  value={option.id}>{option.name}
+                </option>
+              )
+            })}
+          </select>
+          <span>Page: {page}</span>
+          <button onClick={handleLoadNextPage}>Next</button>
+        </div>
+
+        <div className='search-container'>
+          <input type='text' placeholder='search...' onKeyUp={handleQueryChange}/>
+          <button onClick={handleQueryFormSubmit}>Search by Title</button><br/>
+          <button onClick={handlePrevQueryResult}><i class="fa-solid fa-angle-left"></i></button>
+          <span>Page: {queryPage}</span>
+          <button onClick={handleNextQueryResult}><i class="fa-solid fa-angle-right"></i></button>
+        </div>
+      </div>
 
 
-      <ul>
+      <div className='cardContainer'>
         {suggestedMovies.map((movie) => {
           return (
-            <div key={movie.id}>
-              {
-                (movie.title) ?
-                <li>{movie.title}</li> :
-                <li>{movie.name}</li>
-              }
-              <img src={imageString + movie.poster_path}/>
-              <button onClick={(event) => {
-                handleAddPopularMovieToList(movie)
-              }}>Add to List</button>
-            </div>
+            <>
+              <Results movie={movie} handleAddPopularMovieToList={handleAddPopularMovieToList}/>
+            </>
           )
         })}
-      </ul>
+        </div>
     </div>
   )
 }
 
 export default APIComponent
+
+// <div key={movie.id}>
+//   {
+//     (movie.title) ?
+//     <li>{movie.title}</li> :
+//     <li>{movie.name}</li>
+//   }
+//   <img src={imageString + movie.poster_path}/>
+//   <button onClick={(event) => {
+//     handleAddPopularMovieToList(movie)
+//   }}>Add to List</button>
+// </div>
 
 
 //<input type='submit' value='search' onSubmit={handleQueryFormSubmit}/>
