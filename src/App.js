@@ -87,15 +87,12 @@ const App = () => {
     </nav>
     <h1 id='home' className='big-title'>My Movies</h1>
       <div className='cardContainer'>
-
       {movies.map((movie, index) => {
         return (
           <MyMovies key={movie._id} movie={movie} handleDelete={handleDelete} handleChangeWatched={handleChangeWatched} setMinimize={setMinimize}  />
         )
       })}
-
-    </div>
-
+      </div>
       <APIComponent setMovies={setMovies}/>
       <footer class='position-absolute right-0'>
         <div class="container d-flex justify-content-between">

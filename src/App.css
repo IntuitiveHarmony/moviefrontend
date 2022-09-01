@@ -99,34 +99,34 @@ a {
   color: rgb(255,  125, 125);
 }
 .expandedCard {
-  align-content: stretch;
-  margin: .7em;
-  margin-left: 4em;
-  padding-right: 70%;
-  justify-content: space-between;
+  margin: auto 0;
+  /* margin-left: 4em;
+  padding-right: 70%; */
   width: 100%;
   display: flex;
   flex-direction: row;
   flex-grow: 1;
-  width: 20em;
   box-shadow: 5px 5px 12px #888888;
+  justify-content: space-between;
+  align-content: stretch;
 }
 .expandedCardImg {
   float: left;
   margin: .5em;
   width: 16em;
   height: 25em;
+  justify-content: space-between;
 }
 .infoTainer {
   float: right;
-  width: 90%;
+  width: calc(100%-16em);
   margin-left: 1em;
 }
 .info {
   width: 90%;
 }
 .cardOverview {
-  margin-right: 40em;
+
 }
 .searchBar {
   padding-top: 4em;
@@ -135,7 +135,10 @@ a {
   padding-top: 4em;
 }
 #expandID {
-
+  padding-top: 7em;
+}
+#search {
+  padding-top: 4em;
 }
 /* database nav */
 .suggested-header {
