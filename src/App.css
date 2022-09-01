@@ -88,3 +88,11 @@ a {
 #search {
   padding-top: 3em;
 }
+
+.suggested-header {
+  display: flex;
+  justify-content: space-around;
+}
+.fa-angle-left, .fa-angle-right {
+  font-size: 3vw;
+}

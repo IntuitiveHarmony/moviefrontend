@@ -154,6 +154,7 @@ const APIComponent = (props) => {
   }
 
   const handleQueryFormSubmit = () => {
+    setQueryPage(1)
     console.log('https://api.themoviedb.org/3/search/movie?api_key=' + apiKey + '&language=en-US&page=1&include_adult=false&query=' + newQuery)
     axios
       .get('https://api.themoviedb.org/3/search/movie?api_key=' + apiKey + '&language=en-US&page=1&include_adult=false&query=' + newQuery)
@@ -190,24 +191,33 @@ const APIComponent = (props) => {
   return (
     <div>
       <h1 id='search'>Popular Movies</h1>
-      <select onChange={handleChangeGenre}>
-        <option value='popular'>Popular</option>
-        <option value='topRated'>Top-Rated</option>
-        {selectionOptions.map((option) => {
-          return (
-            <option
-              key={option._id}
-              value={option.id}>{option.name}
-            </option>
-          )
-        })}
-      </select><br/><br/>
-      <button onClick={handleLoadPreviousPage}>Previous</button>
-      <button onClick={handleLoadNextPage}>Next</button><br/><br/>
-      <input type='text' onKeyUp={handleQueryChange}/>
-      <button onClick={handleQueryFormSubmit}>Search by Title</button><br/>
-      <button onClick={handlePrevQueryResult}>Previous Result</button>
-      <button onClick={handleNextQueryResult}>Next Result</button>
+      <div className='suggested-header'>
+        <div className='genre-selector'>
+          <button onClick={handleLoadPreviousPage}>Previous</button>
+          <select onChange={handleChangeGenre}>
+            <option value='popular'>Popular</option>
+            <option value='topRated'>Top-Rated</option>
+            {selectionOptions.map((option) => {
+              return (
+                <option
+                  key={option._id}
+                  value={option.id}>{option.name}
+                </option>
+              )
+            })}
+          </select>
+          <span>Page: {page}</span>
+          <button onClick={handleLoadNextPage}>Next</button>
+        </div>
+
+        <div className='search-container'>
+          <input type='text' placeholder='search...' onKeyUp={handleQueryChange}/>
+          <button onClick={handleQueryFormSubmit}>Search by Title</button><br/>
+          <button onClick={handlePrevQueryResult}><i class="fa-solid fa-angle-left"></i></button>
+          <span>Page: {queryPage}</span>
+          <button onClick={handleNextQueryResult}><i class="fa-solid fa-angle-right"></i></button>
+        </div>
+      </div>
 
 
       <ul>
