@@ -2,7 +2,7 @@ import './App.css';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import APIComponent from './components/APIComponent'
-import Expand from './components/Expand'
+import MyMovies from './components/MyMovies'
 
 const App = () => {
   let [movies, setMovies] = useState([])
@@ -89,12 +89,12 @@ const App = () => {
 
       {movies.map((movie, index) => {
         return (
-          <Expand movie={movie} handleDelete={handleDelete} handleChangeWatched={handleChangeWatched} />
+          <MyMovies movie={movie} handleDelete={handleDelete} handleChangeWatched={handleChangeWatched} />
         )
       })}
 
     </div>
-    
+
       <APIComponent setMovies={setMovies}/>
     </div>
   )

@@ -45,7 +45,7 @@ const Results = (props) => {
           <img src={imageString + props.movie.poster_path} />
 
 
-          <div className='addCard'>
+          <div className='hoverMenu'>
             <p onClick={(event) => {
               props.handleAddPopularMovieToList(props.movie)
               }}>+ My Movies</p>
@@ -56,7 +56,7 @@ const Results = (props) => {
 
 
 
-          
+
           </div></a>
           :
         <a href='#expandID' onMouseEnter={()=> setHover(true)} onMouseLeave={()=>setHover(false)}><div className='card' >

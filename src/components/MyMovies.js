@@ -2,8 +2,9 @@ import axios from 'axios'
 import {useState} from 'react'
 
 
-const Expand = (props) => {
+const MyMovies = (props) => {
 const [expand, setExpand] = useState(false)
+let [hover, setHover] = useState(false)
   //delete icon ceme from icons8.com
   //-----------------------------------------------
   //        EXPAND FUNCTION
@@ -37,7 +38,19 @@ const [expand, setExpand] = useState(false)
           </div>
         </div>
         :
-        <a href='#expandID'><div className='card'>
+        hover ?
+        <a href='#expandID' onMouseEnter={()=> setHover(true)} onMouseLeave={()=>setHover(false)}><div className='card'>
+        <img onClick={handleExpand} src={props.movie.image} />
+          <div className='cardOption'>
+            <img onClick={(event) => {props.handleDelete(props.movie)}} src='icons8-remove-24.png' className='delIcon'/>
+            <input type='checkbox' onChange={(event) => {
+              props.handleChangeWatched(props.movie)
+            }}/>
+          </div>
+        </div></a>
+
+        :
+        <a href='#expandID' onMouseEnter={()=> setHover(true)} onMouseLeave={()=>setHover(false)}><div className='card'>
         <img onClick={handleExpand} src={props.movie.image} />
           <div className='cardOption'>
             <img onClick={(event) => {props.handleDelete(props.movie)}} src='icons8-remove-24.png' className='delIcon'/>
@@ -61,4 +74,4 @@ const [expand, setExpand] = useState(false)
 }
 
 
-export default Expand
+export default MyMovies

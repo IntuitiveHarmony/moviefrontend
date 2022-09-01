@@ -62,7 +62,7 @@ a {
   cursor: pointer;
   position: relative;
 }
-.addCard {
+.hoverMenu {
   width: 100%;
   height: 100%;
   display: flex;
