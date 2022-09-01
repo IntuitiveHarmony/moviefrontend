@@ -66,7 +66,7 @@ let [hover, setHover] = useState(false)
         </div></a>
 
         :
-        <a href='#expandID' onMouseEnter={()=> setHover(true)} onMouseLeave={()=>setHover(false)}><div className='card'>
+        <a href='#expandID' onMouseEnter={()=> setHover(true)} onMouseLeave={()=>setHover(false)}><div className='not-card'>
         <img onClick={handleExpand} src={props.movie.image} />
         <div className='checkContainer'>
           <input type='checkbox' onChange={(event) => {
