@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {useState, useEffect} from 'react'
+import Results from './Results'
 //components
 
 const apiKey = '5e986ac1b545d3a43184019b017d36f3'
@@ -222,30 +223,32 @@ const APIComponent = (props) => {
       </div>
 
 
-      <div className='d-flex justify-content-between flex-wrap'>
+      <div className='cardContainer'>
         {suggestedMovies.map((movie) => {
           return (
-            <div key={movie.id} className='card'>
-              <img src={imageString + movie.poster_path}/>
-              <div className='card-body'>
-                {
-                  (movie.title) ?
-                  <h5 className='card-title'>{movie.title}</h5> :
-                  <h5 className='card-title'>{movie.name}</h5>
-                }
-              </div>
-              <button className='btn btn-primary' onClick={(event) => {
-                handleAddPopularMovieToList(movie)
-              }}>Add to List</button>
-            </div>
+            <>
+              <Results movie={movie} handleAddPopularMovieToList={handleAddPopularMovieToList}/>
+            </>
           )
         })}
-      </div>
+        </div>
     </div>
   )
 }
 
 export default APIComponent
+
+// <div key={movie.id}>
+//   {
+//     (movie.title) ?
+//     <li>{movie.title}</li> :
+//     <li>{movie.name}</li>
+//   }
+//   <img src={imageString + movie.poster_path}/>
+//   <button onClick={(event) => {
+//     handleAddPopularMovieToList(movie)
+//   }}>Add to List</button>
+// </div>
 
 
 //<input type='submit' value='search' onSubmit={handleQueryFormSubmit}/>
