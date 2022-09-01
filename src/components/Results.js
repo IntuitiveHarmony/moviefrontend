@@ -13,13 +13,15 @@ const Results = (props) => {
   const handleExpand = () => {
     setExpand(!expand)
   }
-
+  const minimize = () => {
+    setExpand(false)
+  }
 
   return (
     <>
 
     {expand ?
-      <div className='expandedCard' id='expandID'>
+      <div className='expandedCard' id='expandID' onMouseLeave={minimize}>
 
         <img onClick={handleExpand} src={imageString + props.movie.poster_path} className='expandedCardImg'/>
         <div className='infoTainer'>

@@ -11,6 +11,7 @@ const App = () => {
   const [newImage, setNewImage] = useState('')
   const [newRating, setNewRating] = useState(0)
   const [newWatched, setNewWatched] = useState()
+  const [minimize, setMinimize] = useState()
 
 
   useEffect(()=>{
@@ -89,7 +90,7 @@ const App = () => {
 
       {movies.map((movie, index) => {
         return (
-          <MyMovies movie={movie} handleDelete={handleDelete} handleChangeWatched={handleChangeWatched} />
+          <MyMovies key={movie._id} movie={movie} handleDelete={handleDelete} handleChangeWatched={handleChangeWatched} setMinimize={setMinimize}  />
         )
       })}
 

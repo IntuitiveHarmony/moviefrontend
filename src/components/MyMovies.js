@@ -11,13 +11,20 @@ let [hover, setHover] = useState(false)
   //-----------------------------------------------
   const handleExpand = () => {
     setExpand(!expand)
+    props.setMinimize(true)
   }
 
+  if (props.minimize === true) {
+   setExpand(false)
+ }
+ const minimize = () => {
+   setExpand(false)
+ }
   return (
     <>
 
     {expand ?
-      <div className='expandedCard' id='expandID'>
+      <div className='expandedCard' id='expandID' onMouseLeave={minimize}>
 
         <img onClick={handleExpand} src={props.movie.image} className='expandedCardImg'/>
         <div className='infoTainer'>
@@ -44,9 +51,8 @@ let [hover, setHover] = useState(false)
 
 
           <div className='hoverMenu'>
-          <div className='deleteContainer'>
 
-          </div>
+
             <div className='checkContainer'>
             Watched:<input type='checkbox' onChange={(event) => {
             props.handleChangeWatched(props.movie)
@@ -55,8 +61,8 @@ let [hover, setHover] = useState(false)
             </div>
             <p onClick={(event) => {props.handleDelete(props.movie)}} className='deleteBtn'>Delete</p>
             <p onClick={handleExpand}>Details</p>
+            </div>
 
-          </div>
 
 
         </div></a>

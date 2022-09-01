@@ -85,7 +85,6 @@ a {
   position: absolute;
   color: white;
   z-index: 2;
-
 }
 .cardOption {
   display: flex;
@@ -95,11 +94,11 @@ a {
   color: white;
 }
 .deleteBtn {
-  color: rgb(255,  10, 45);
+  color: rgb(255,  125, 125);
 }
 .expandedCard {
+  align-content: stretch;
   margin: .7em;
-  margin-top: 20em;
   margin-left: 4em;
   padding-right: 70%;
   justify-content: space-between;
@@ -111,11 +110,14 @@ a {
   box-shadow: 5px 5px 12px #888888;
 }
 .expandedCardImg {
+  float: left;
   margin: .5em;
   width: 16em;
   height: 25em;
 }
 .infoTainer {
+  float: right;
+  width: 90%;
   margin-left: 1em;
 }
 .info {
@@ -125,7 +127,12 @@ a {
 
   margin-right: 7em;
 }
+.searchBar {
+  padding-top: 4em;
+}
+#home {
+  padding-top: 4em;
+}
+#expandID {
 
-#search {
-  padding-top: 3em;
 }
