@@ -42,7 +42,7 @@ a {
   flex-wrap: wrap;
   align-items: flex-start;
 }
-.card {
+.not-card {
   width: 10em;
   display: flex;
   flex-direction: column;
